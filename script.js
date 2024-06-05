@@ -1,16 +1,16 @@
 let cities = [
-  { name: "Istanbul", utcOffset: 3, flag: "Turkey.png" },
-  {
-    name: "New York City",
-    utcOffset: -5,
-    flag: "United-States-of-America.png",
-  },
-  { name: "Tokyo", utcOffset: 9, flag: "Japan.png" },
-  { name: "Moscow", utcOffset: 3, flag: "Russia.png" },
-  { name: "Rio De Janeiro", utcOffset: -3, flag: "Brazil.png" },
-  { name: "Sydney", utcOffset: 11, flag: "Australia.png" },
-  { name: "Vancouver", utcOffset: -8, flag: "Canada.png" },
-  { name: "Beijing", utcOffset: 8, flag: "China.png" },
+  { name: "United States", flag: "usa.png", utcOffset: -5 },
+  { name: "United Kingdom", flag: "uk.png", utcOffset: 0 },
+  { name: "China", flag: "china.png", utcOffset: 8 },
+  { name: "Japan", flag: "japan.png", utcOffset: 9 },
+  { name: "Germany", flag: "germany.png", utcOffset: 1 },
+  { name: "India", flag: "india.png", utcOffset: 5.5 },
+  { name: "France", flag: "france.png", utcOffset: 1 },
+  { name: "Brazil", flag: "brazil.png", utcOffset: -3 },
+  { name: "Australia", flag: "australia.png", utcOffset: 10 },
+  { name: "Canada", flag: "canada.png", utcOffset: -5 },
+  { name: "South Africa", flag: "sa.png", utcOffset: 2 },
+  { name: "Norway", flag: "norway.png", utcOffset: 1 },
 ];
 
 //Compare function to sort cities alphabetically by name
@@ -52,26 +52,20 @@ const displayWorldTime = function () {
   document.getElementById("local").textContent =
     "Local Time: " + date.toLocaleTimeString();
 
-  let output = `<table id="cities">`;
-  output += `
-    <tr>
-       <th class="col1"></th>
-       <th class="col2"></th>
-       <th></th>
-    </tr>
-  `;
+  let output = "";
 
-  // Loop through each city and add a row to the table
-  for (i = 0; i < cities.length; i++) {
+  // Loop through each city and add a div to the output
+  for (let i = 0; i < cities.length; i++) {
     output += `
-<tr>
-<td><img src="media/${cities[i].flag}" /></td>
-<td>${cities[i].name}</td>
-<td>${getCurrentTime(cities[i].utcOffset)}</td>
-</tr>
-`;
+    <div class="box">
+    <div class="city" style="background-image: url('images/${cities[i].flag}')">
+      <div class="city-name">${cities[i].name}</div>
+      <div class="city-time">${getCurrentTime(cities[i].utcOffset)}</div>
+    </div>
+    </div>
+  `;
   }
-  output += `</table>`;
+
   document.getElementById("output").innerHTML = output;
 };
 
